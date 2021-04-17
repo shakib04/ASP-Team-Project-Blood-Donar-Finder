@@ -1,0 +1,140 @@
+﻿@model IEnumerable<BloodDonationProject.Models.userInfo>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>RepoterInfo</title>
+    <link href="@Url.Content("~/Content/main.css")" rel="stylesheet" type="text/css" />
+</head>
+<body><body style="background-color:@(Session["DarkMood"].ToString() == "yes" ? "rgb(38, 38, 38)" : "rgb(230, 230, 230)");
+               color:@(Session["DarkMood"].ToString() == "yes" ? "white" : "black");">
+
+    <nav style="background-color:rgb(255, 204, 204); height:35px;font-size:16px;font-weight:bold">
+        <span style="margin: 10px 10px"> @Html.ActionLink("Home", "Index")</span>
+        <span style="margin: 0 30px; display:@(Session["Type"].ToString()  == "Moderator" ? "none": "inline")"> @Html.ActionLink("Add Modaretor", "Create")</span>
+        <span style="margin: 10px 10px"> @Html.ActionLink("All Reports", "showReports")</span>
+        <span style="margin: 10px 10px"> @Html.ActionLink("Employe List", "AdnModList")</span>
+        <span style="margin: 10px 10px"> @Html.ActionLink("BannedUsers List", "banUsersList")</span>
+        <span style="margin: 10px 10px"> @Html.ActionLink("Contact Us", "CreateContactUsList")</span>
+        <span style="margin: 10px 10px"> @Html.ActionLink("Chart", "Index", "Chart")</span>
+        <span style="margin: 10px 10px"> @Html.ActionLink("Yearly Unban", "UnBanAllView")</span>
+        <span style="margin: 10px 10px"> @Html.ActionLink("Salary Info", "SalaryList")</span>
+        <span style="margin: 10px 10px"> @Html.ActionLink("Donners List", "DonnerList")</span>
+        <span style="margin: 10px 10px"> @Html.ActionLink("LogOut", "LogOut")</span>
+        @Html.ActionLink("Dark Mood", "darkMood")
+    </nav>
+
+    <br />
+    <h2 style="text-align:center">--All Reports--</h2>
+    <br />
+    <table class="table" border="1">
+        <tr>
+            <th>Report</th>
+            <th>GotReported</th>
+            <th>Repoter</th>
+        </tr>
+
+        @foreach (var item in ViewData["Reports"] as IEnumerable<BloodDonationProject.Models.report>)
+        {
+
+            <tr>
+                <td>@item.Report1</td>
+                <td>@item.userInfo.Name </td>
+                <td>@item.userInfo1.Name</td>
+            </tr>
+
+        }
+    </table>
+    <br />
+    <h2 style="text-align:center">--Donar Info--</h2>
+    <br />
+    <table class="table" border="1">
+        <tr>
+
+            <th>
+                Name
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Phone
+            </th>
+            <th>
+                Address
+            </th>
+            <th>
+                DOB
+            </th>
+            <th>
+                Type
+            </th>
+            <th>
+                Doc
+            </th>
+            <th>
+                Pic
+            </th>
+            <th>
+                BloodGroup
+            </th>
+
+
+            <th>
+                ChnageStatusTo
+            </th>
+        </tr>
+
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DOB)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Type)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Docoment)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProPic)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BloodGroup)
+                </td>
+                <td>
+                    <p style="display:@(System.Convert.ToBoolean(Session["userban"])== true ? "block":"none")">@Html.ActionLink("UnBan", "UnBanUser", new { email = item.Email })</p>
+                    <p style="display:@(System.Convert.ToBoolean(Session["userban"])== false ? "block":"none")">@Html.ActionLink("Ban", "BanUser", new { id = item.userID })</p>
+
+                </td>
+            </tr>
+        }
+
+    </table>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BlooodDonationDBModelStoreContainer" CdmEntityContainer="BloodDonationDBEntities12">
+    <EntitySetMapping Name="bannedUsers">
+      <EntityTypeMapping TypeName="BlooodDonationDBModel.bannedUser">
+        <MappingFragment StoreEntitySet="bannedUser">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="BannedDate" ColumnName="BannedDate" />
+          <ScalarProperty Name="duration" ColumnName="duration" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BloodBooks">
+      <EntityTypeMapping TypeName="BlooodDonationDBModel.BloodBook">
+        <MappingFragment StoreEntitySet="BloodBook">
+          <ScalarProperty Name="BookId" ColumnName="BookId" />
+          <ScalarProperty Name="BookName" ColumnName="BookName" />
+          <ScalarProperty Name="BloodGroup" ColumnName="BloodGroup" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="Relation" ColumnName="Relation" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="contactUs">
+      <EntityTypeMapping TypeName="BlooodDonationDBModel.contactU">
+        <MappingFragment StoreEntitySet="contactUs">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Massage" ColumnName="Massage" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DisabledAccounts">
+      <EntityTypeMapping TypeName="BlooodDonationDBModel.DisabledAccount">
+        <MappingFragment StoreEntitySet="DisabledAccount">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="DisabledDate" ColumnName="DisabledDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DonationForSystems">
+      <EntityTypeMapping TypeName="BlooodDonationDBModel.DonationForSystem">
+        <MappingFragment StoreEntitySet="DonationForSystem">
+          <ScalarProperty Name="DonationId" ColumnName="DonationId" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="MoneySource" ColumnName="MoneySource" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="UserEmail" ColumnName="UserEmail" />
+          <ScalarProperty Name="YourMessage" ColumnName="YourMessage" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="donorRatings">
+      <EntityTypeMapping TypeName="BlooodDonationDBModel.donorRating">
+        <MappingFragment StoreEntitySet="donorRatings">
+          <ScalarProperty Name="rateId" ColumnName="rateId" />
+          <ScalarProperty Name="userID" ColumnName="userID" />
+          <ScalarProperty Name="oneStar" ColumnName="oneStar" />
+          <ScalarProperty Name="twoStar" ColumnName="twoStar" />
+          <ScalarProperty Name="threeStar" ColumnName="threeStar" />
+          <ScalarProperty Name="fourStar" ColumnName="fourStar" />
+          <ScalarProperty Name="fiveStar" ColumnName="fiveStar" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FlagPosts">
+      <EntityTypeMapping TypeName="BlooodDonationDBModel.FlagPost">
+        <MappingFragment StoreEntitySet="FlagPost">
+          <ScalarProperty Name="FlagId" ColumnName="FlagId" />
+          <ScalarProperty Name="PostID" ColumnName="PostID" />
+          <ScalarProperty Name="userID" ColumnName="userID" />
+          <ScalarProperty Name="FlagReason" ColumnName="FlagReason" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Posts">
+      <EntityTypeMapping TypeName="BlooodDonationDBModel.Post">
+        <MappingFragment StoreEntitySet="Posts">
+          <ScalarProperty Name="PostID" ColumnName="PostID" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="WantedBlood" ColumnName="WantedBlood" />
+          <ScalarProperty Name="Text" ColumnName="Text" />
+          <ScalarProperty Name="Time" ColumnName="Time" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="reports">
+      <EntityTypeMapping TypeName="BlooodDonationDBModel.report">
+        <MappingFragment StoreEntitySet="reports">
+          <ScalarProperty Name="ReportId" ColumnName="ReportId" />
+          <ScalarProperty Name="Report1" ColumnName="Report" />
+          <ScalarProperty Name="DonorId" ColumnName="DonorId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RequestBloods">
+      <EntityTypeMapping TypeName="BlooodDonationDBModel.RequestBlood">
+        <MappingFragment StoreEntitySet="RequestBlood">
+          <ScalarProperty Name="RequestId" ColumnName="RequestId" />
+          <ScalarProperty Name="Request_Message" ColumnName="Request_Message" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="DonarId" ColumnName="DonarId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Salaries">
+      <EntityTypeMapping TypeName="BlooodDonationDBModel.Salary">
+        <MappingFragment StoreEntitySet="Salary">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="January" ColumnName="January" />
+          <ScalarProperty Name="February" ColumnName="February" />
+          <ScalarProperty Name="March" ColumnName="March" />
+          <ScalarProperty Name="April" ColumnName="April" />
+          <ScalarProperty Name="May" ColumnName="May" />
+          <ScalarProperty Name="June" ColumnName="June" />
+          <ScalarProperty Name="July" ColumnName="July" />
+          <ScalarProperty Name="August" ColumnName="August" />
+          <ScalarProperty Name="September" ColumnName="September" />
+          <ScalarProperty Name="October" ColumnName="October" />
+          <ScalarProperty Name="November" ColumnName="November" />
+          <ScalarProperty Name="December" ColumnName="December" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="userInfoes">
+      <EntityTypeMapping TypeName="BlooodDonationDBModel.userInfo">
+        <MappingFragment StoreEntitySet="userInfo">
+          <ScalarProperty Name="userID" ColumnName="userID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="DOB" ColumnName="DOB" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Docoment" ColumnName="Docoment" />
+          <ScalarProperty Name="ProPic" ColumnName="ProPic" />
+          <ScalarProperty Name="BloodGroup" ColumnName="BloodGroup" />
+          <ScalarProperty Name="ReportCounter" ColumnName="ReportCounter" />
+          <ScalarProperty Name="BanStatus" ColumnName="BanStatus" />
+          <ScalarProperty Name="isVerified" ColumnName="isVerified" />
+          <ScalarProperty Name="darkMood" ColumnName="darkMood" />
+          <ScalarProperty Name="Salary" ColumnName="Salary" />
+          <ScalarProperty Name="LastDonate" ColumnName="LastDonate" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="NID" ColumnName="NID" />
+          <ScalarProperty Name="Social_Profile" ColumnName="Social_Profile" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

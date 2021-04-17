@@ -1,0 +1,77 @@
+﻿@model BloodDonationProject.Models.userInfo
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AfterReg</title>
+</head>
+<body>
+    <hr />
+    <div style="font-size:25px">
+        <div style="background-color:antiquewhite;  margin: 50px 50px;text-align:center">
+            <span style="margin: 00px 20px 30px">Email : </span>  @Html.DisplayFor(model => model.Email)
+
+            <span style="margin: 00px 20px 30px">Password: </span>@Html.DisplayFor(model => model.Password)
+        </div>
+
+        <div>
+            <hr />
+
+
+            <table style="margin-left:auto;margin-right:auto">
+                <tr>
+                    <td>
+                        <img src="~/Content/Images/@Model.ProPic" alt="proPic" height="150px" width="150px" style="margin:05px 25px" />
+                    </td>
+                    <td>
+                        <table style="margin-left:auto;margin-right:auto;">
+                            <tr>
+                                <td>Name:</td>
+                                <td>  @Html.DisplayFor(model => model.Name)</td>
+                            </tr>
+                            <tr>
+                                <td>Phone: </td>
+                                <td>@Html.DisplayFor(model => model.Phone)</td>
+                            </tr>
+                            <tr>
+                                <td>Address: </td>
+                                <td> @Html.DisplayFor(model => model.Address)</td>
+                            </tr>
+                            <tr>
+                                <td>Death of Birth: </td>
+                                <td>
+                                    @Model.DOB.ToString("dd/MM/yyyy")
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Postion: </td>
+                                <td>@Html.DisplayFor(model => model.Type)</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <br />
+    <br />
+
+    <hr />
+    <hr />
+    <a href="@Url.Action("Print","Admin",new {email = Model.Email})"
+       style=";font-size:20px;margin:300px 50%">Print</a>
+
+
+
+
+
+
+
+</body>
+</html>

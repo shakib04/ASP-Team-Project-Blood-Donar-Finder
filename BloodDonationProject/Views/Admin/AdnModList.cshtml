@@ -1,0 +1,119 @@
+﻿@model IEnumerable<BloodDonationProject.Models.userInfo>
+
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+
+    <title>AdnModList</title>
+    <link href="@Url.Content("~/Content/main.css")" rel="stylesheet" type="text/css" />
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+<body style="background-color:@(Session["DarkMood"].ToString() == "yes" ? "rgb(38, 38, 38)" : "rgb(230, 230, 230)");
+               color:@(Session["DarkMood"].ToString() == "yes" ? "white" : "black");">
+
+    <nav style="background-color:rgb(255, 204, 204); height:35px;font-size:16px;font-weight:bold">
+        <span style="margin: 10px 10px"> @Html.ActionLink("Home", "Index")</span>
+        <span style="margin: 0 30px; display:@(Session["Type"].ToString()  == "Moderator" ? "none": "inline")"> @Html.ActionLink("Add Modaretor", "Create")</span>
+        <span style="margin: 10px 10px"> @Html.ActionLink("All Reports", "showReports")</span>
+        <span style="margin: 10px 10px"> @Html.ActionLink("Employe List", "AdnModList")</span>
+        <span style="margin: 10px 10px"> @Html.ActionLink("BannedUsers List", "banUsersList")</span>
+        <span style="margin: 10px 10px"> @Html.ActionLink("Contact Us", "CreateContactUsList")</span>
+        <span style="margin: 10px 10px"> @Html.ActionLink("Chart", "Index", "Chart")</span>
+        <span style="margin: 10px 10px"> @Html.ActionLink("Yearly Unban", "UnBanAllView")</span>
+        <span style="margin: 10px 10px"> @Html.ActionLink("Salary Info", "SalaryList")</span>
+        <span style="margin: 10px 10px"> @Html.ActionLink("Donners List", "DonnerList")</span>
+        <span style="margin: 10px 10px"> @Html.ActionLink("LogOut", "LogOut")</span>
+        @Html.ActionLink("Dark Mood", "darkMood")
+    </nav>
+    <div style="text-align:center;color:red">@TempData["DisableEnableError"]</div>
+    <table>
+        <tr>
+            <th>
+                Picture
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DOB)
+            </th>
+            <th>
+                Age
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BloodGroup)
+            </th>
+            <th>
+                Promotion
+            </th>
+            <th>
+                Action
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            if (item.Email != Session["Email"].ToString()) //Session["Email"].ToString()
+            {
+                <tr>
+                    <td>
+                        <img src="~/Content/Images/@item.ProPic" alt="proPic" height="80px" width="80px" style="margin:05px 25px" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Phone)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Address)
+                    </td>
+                    <td>
+                        @* @Html.DisplayFor(modelItem => item.DOB.ToString("dd/MM/yyyy"))*@
+                        @item.DOB.ToString("dd/MM/yy")
+                    </td>
+                    <td>
+                        @((int.Parse(DateTime.Now.ToString("yyyyMMdd"))- int.Parse(item.DOB.ToString("yyyyMMdd")))/10000 )
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Type)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BloodGroup)
+                    </td>
+                    <td>
+                        <a href="@Url.Action("typeChage", "Admin", new { id = item.userID })" style="pointer-events: @(@Session["Type"] == "Admin" ? "" : "none")">
+                            @(item.Type == "Admin" ? "Demotion" : "Promotion")
+                        </a>
+                    </td>
+                    <td>
+                        <p style="pointer-events: @(@Session["Type"] == "Admin" ? "" : "none")">@Html.ActionLink("Enable", "EnableAdnMod", new { email = item.Email })</p> | |
+                        <p style="pointer-events: @(@Session["Type"] == "Admin" ? "" : "none")">@Html.ActionLink("Disable", "DisableAdnMod", new { id = item.userID, email = item.Email })</p>
+                    </td>
+                </tr>
+            }
+        }
+
+    </table>
+</body>
+</html>

@@ -1,0 +1,202 @@
+﻿@model BloodDonationProject.Models.userInfo
+
+@{
+
+
+
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Create</title>
+    <link href="@Url.Content("~/Content/main.css")" rel="stylesheet" type="text/css" />
+</head>
+<body style="background-color:@(Session["DarkMood"].ToString() == "yes" ? "rgb(38, 38, 38)" : "rgb(230, 230, 230)");
+               color:@(Session["DarkMood"].ToString() == "yes" ? "white" : "black");">
+
+    <nav style="background-color:rgb(255, 204, 204); height:35px;font-size:16px;font-weight:bold">
+        <span style="margin: 10px 10px"> @Html.ActionLink("Home", "Index")</span>
+        <span style="margin: 0 30px; display:@(Session["Type"].ToString()  == "Moderator" ? "none": "inline")"> @Html.ActionLink("Add Modaretor", "Create")</span>
+        <span style="margin: 10px 10px"> @Html.ActionLink("All Reports", "showReports")</span>
+        <span style="margin: 10px 10px"> @Html.ActionLink("Employe List", "AdnModList")</span>
+        <span style="margin: 10px 10px"> @Html.ActionLink("BannedUsers List", "banUsersList")</span>
+        <span style="margin: 10px 10px"> @Html.ActionLink("Contact Us", "CreateContactUsList")</span>
+        <span style="margin: 10px 10px"> @Html.ActionLink("Chart", "Index", "Chart")</span>
+        <span style="margin: 10px 10px"> @Html.ActionLink("Yearly Unban", "UnBanAllView")</span>
+        <span style="margin: 10px 10px"> @Html.ActionLink("Salary Info", "SalaryList")</span>
+        <span style="margin: 10px 10px"> @Html.ActionLink("Donners List", "DonnerList")</span>
+        <span style="margin: 10px 10px"> @Html.ActionLink("LogOut", "LogOut")</span>
+        @Html.ActionLink("Dark Mood", "darkMood")
+    </nav>
+    <hr />
+
+    @*    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+        <script src="~/Scripts/jquery.validate.min.js"></script>
+        <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>*@
+
+
+    @using (Html.BeginForm("Create",
+       "Admin", FormMethod.Post,
+       new { enctype = "multipart/form-data" }))
+
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>Add New Admin/Modarator</h4>
+            <p style="text-align:center;color:red">@TempData["ValidationError"]</p>
+            <hr />
+            <table>
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <tr class="form-group">
+                    <td>
+                        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                    </td>
+                    <td class="col-md-10">
+                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                    </td>
+                    <td class="col-md-10">
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+
+                <tr class="form-group">
+                    <td>
+                        @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                    </td>
+                    <td class="col-md-10">
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                    </td>
+                    <td class="col-md-10">
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                        <p style="color:red">@TempData["EmailExist"]</p>
+                    </td>
+                </tr>
+
+
+
+                <tr class="form-group">
+                    <td>
+                        @Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "control-label col-md-2" })
+                    </td>
+
+                    <td class="col-md-10">
+                        @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
+                    </td>
+                    <td class="col-md-10">
+                      @*  @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })*@
+                       
+                        <p style="color:red"> @TempData["PhoneError"]</p>
+                    </td>
+
+                </tr>
+
+                <tr class="form-group">
+                    <td>
+                        @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
+                    </td>
+                    <td class="col-md-10">
+                        @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                    </td>
+                    <td class="col-md-10">
+                        @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+
+                <tr class="form-group">
+                    <td>
+                        @Html.LabelFor(model => model.DOB, htmlAttributes: new { @class = "control-label col-md-2" })
+                    </td>
+                    <td class="col-md-10">
+                        @Html.EditorFor(model => model.DOB, new { htmlAttributes = new { @type = "date" } })
+                    </td>
+                    <td class="col-md-10">
+                        @Html.ValidationMessageFor(model => model.DOB, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+
+                <tr class="form-group">
+                    <td>
+                        @Html.LabelFor(model => model.Type, htmlAttributes: new { @class = "control-label col-md-2" })
+                    </td>
+                    <td class="col-md-10">
+                        <select name="Type">
+                            <option>Admin</option>
+                            <option>Moderator</option>
+                        </select>
+                    </td>
+                    <td class="col-md-10">
+                        @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+
+                <tr class="form-group">
+                    <td>
+                        Salary(Monthly):
+                    </td>
+                    <td class="col-md-10">
+                        @Html.EditorFor(model => model.Salary, new { htmlAttributes = new { @type = "number" } })
+                    </td>
+                    <td class="col-md-10">
+                        <p style="color:red">@TempData["SalaryError"]</p>
+                    </td>
+                </tr>
+
+
+                <tr class="form-group">
+                    <td>
+                        @Html.LabelFor(model => model.ProPic, htmlAttributes: new { @class = "control-label col-md-2" })
+                    </td>
+                    <td class="col-md-10">
+                        <input type="file" name="file" id="file" /><br><br>
+                    </td>
+                    <td class="col-md-10">
+                        <p style="color:red"> @TempData["TempPhotoError"]</p>
+                       
+                    </td>
+                </tr>
+
+                <tr class="form-group">
+                    <td>
+                        @Html.LabelFor(model => model.BloodGroup, htmlAttributes: new { @class = "control-label col-md-2" })
+                    </td>
+                    <td class="col-md-10">
+                        <select name="BloodGroup">
+                            <option>A+</option>
+                            <option>A-</option>
+                            <option>B-</option>
+                            <option>B+</option>
+                            <option>O+</option>
+                        </select>
+                    </td>
+                    <td class="col-md-10">
+
+                        @Html.ValidationMessageFor(model => model.BloodGroup, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+                <tr class="form-group">
+                    <td>
+                    </td>
+                    <td class="col-md-10">
+                    </td>
+                    <td class="col-md-10">
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Create" class="btn btn-default" />
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+
+
+        </div>
+    }
+
+
+</body>
+</html>
