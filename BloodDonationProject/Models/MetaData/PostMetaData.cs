@@ -16,7 +16,11 @@ namespace BloodDonationProject.Models.MetaData
         public string WantedBlood { get; set; }
         [Required, MinLength(5, ErrorMessage ="Text is not sufficient")]
         public string Text { get; set; }
-       
+        [Display(Name = "Hospital Name"), Required]
+        public string HospitalName { get; set; }
+        [Display(Name = "Contact Number"), Required]
+        public string ContactNumber { get; set; }
+
 
         public virtual Post Posts1 { get; set; }
         public virtual Post Post1 { get; set; }

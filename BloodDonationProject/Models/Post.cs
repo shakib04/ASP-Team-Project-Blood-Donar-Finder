@@ -26,6 +26,8 @@ namespace BloodDonationProject.Models
         public string WantedBlood { get; set; }
         public string Text { get; set; }
         public System.DateTime Time { get; set; }
+        public string HospitalName { get; set; }
+        public string ContactNumber { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FlagPost> FlagPosts { get; set; }

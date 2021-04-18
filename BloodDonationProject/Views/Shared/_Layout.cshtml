@@ -24,11 +24,13 @@
 
                     @if (Session["userid"] == null)
                     {
-                        <li>@Html.ActionLink("Home", "Index", "User")</li>
+                        @*<li>@Html.ActionLink("Home", "Index", "User")</li>*@
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     }
 
                     <li>@Html.ActionLink("Donars", "Donarslist", "User")</li>
                     <li>@Html.ActionLink("Post", "AllPosts", "Post")</li>
+                    
                     
 
                     @{
@@ -42,7 +44,15 @@
                         }
                     }
                     
+                   
+
+                    @if (Session["userid"] == null)
+                    {
+                        <li>@Html.ActionLink("Contact Us", "CreateContactUs", "Admin")</li>
+                        <li>@Html.ActionLink("Login", "Login", "Home")</li>
+                    }
                     <li>@Html.ActionLink("Funding", "Index", "DonationForSystem")</li>
+
                 </ul>
                 @*@Html.Partial("_LoginPartial")*@
             </div>

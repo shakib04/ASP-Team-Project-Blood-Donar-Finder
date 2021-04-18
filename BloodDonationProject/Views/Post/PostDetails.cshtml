@@ -1,16 +1,39 @@
 ﻿@model BloodDonationProject.Models.Post
 
 @{
-    ViewBag.Title = "PostDetails";
+    ViewBag.Title = "Post Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>PostDetails</h2>
+<style>
+    dt,dd{
+        line-height:2;
+    }
+</style>
+
+<h2>Post Details </h2>
 
 <div>
-    <h4>Post</h4>
+    <h4>Group: @Model.WantedBlood</h4>
     <hr />
     <dl class="dl-horizontal">
+
+            <dt>
+                @Html.DisplayNameFor(model => model.WantedBlood)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.WantedBlood)
+            </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HospitalName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HospitalName)
+        </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.Address)
         </dt>
@@ -20,11 +43,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.WantedBlood)
+            @Html.DisplayNameFor(model => model.ContactNumber)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.WantedBlood)
+            @Html.DisplayFor(model => model.ContactNumber)
         </dd>
 
         <dt>
@@ -36,7 +59,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Time)
+            Post Time
         </dt>
 
         <dd>
@@ -44,7 +67,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.userInfo.Name)
+            Posted By
         </dt>
 
         <dd>
@@ -53,6 +76,8 @@
 
     </dl>
 </div>
+
+
 <p>
     @Html.ActionLink("Flag Post", "FlagThisPost", "FlagPost", new { id = Model.PostID }, null) |
     @Html.ActionLink("Back to Post List", "AllPosts", "Post")

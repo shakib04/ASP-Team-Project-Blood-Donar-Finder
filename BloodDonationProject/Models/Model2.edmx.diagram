@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="d905fc46836b495b93fb0208b6d3ce72" Name="Diagram1">
+      <Diagram DiagramId="d905fc46836b495b93fb0208b6d3ce72" Name="Diagram1" ZoomLevel="96">
         <EntityTypeShape EntityType="BlooodDonationDBModel.bannedUser" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="BlooodDonationDBModel.BloodBook" Width="1.5" PointX="3" PointY="3.375" IsExpanded="true" />
         <EntityTypeShape EntityType="BlooodDonationDBModel.contactU" Width="1.5" PointX="5.75" PointY="3.75" IsExpanded="true" />

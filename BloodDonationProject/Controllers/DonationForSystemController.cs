@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using BloodDonationProject.Repository;
 using BloodDonationProject.Models;
-
+using System.Text.RegularExpressions;
 
 namespace BloodDonationProject.Controllers.User
 {
@@ -68,11 +68,18 @@ namespace BloodDonationProject.Controllers.User
                 ViewData["ErrorMsg"] = "Please Enter Your Mobile Number";
                 return View(Session["donationInfo"]);
             }
-            else if (form["MobileNumber"].Length < 11)
+            //else if (form["MobileNumber"].Length < 11)
+            //{
+            //    ViewData["ErrorMsg"] = "Mobile Number is not valid";
+            //    return View(Session["donationInfo"]);
+            //}
+
+            if (!new Regex(@"^(?:\+?88)?01[13-9]\d{8}$").IsMatch(form["MobileNumber"]))
             {
                 ViewData["ErrorMsg"] = "Mobile Number is not valid";
                 return View(Session["donationInfo"]);
             }
+
             else if(form["pin"] == "")
             {
                 ViewData["ErrorMsg"] = "Please Enter PIN Number";

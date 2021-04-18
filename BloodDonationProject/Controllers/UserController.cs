@@ -25,7 +25,8 @@ namespace BloodDonationProject.Controllers
         {
             //Session["userid"] = 3036;
             //Session["type"] = "user";
-            return View();
+            //return View();
+            return RedirectToAction("Index", "Home");
         }
 
         public ActionResult Dashboard()
@@ -47,7 +48,7 @@ namespace BloodDonationProject.Controllers
         [HttpGet]
         public ActionResult Donarslist()
         {
-            var donarlist = context.userInfoes.Where(x => x.Type == "donar").ToList();
+            var donarlist = context.userInfoes.Where(x => x.Type.ToLower() == "donar").ToList();
             return View(donarlist);
         }
 
@@ -97,6 +98,11 @@ namespace BloodDonationProject.Controllers
 
         public ActionResult UserDetails(int id)
         {
+            if (Session["userid"] == null)
+            {
+                return RedirectToAction("Index","User");
+            }
+
             if (id == (int) Session["userid"])
             {
                 return RedirectToAction("MyProfile", "User");

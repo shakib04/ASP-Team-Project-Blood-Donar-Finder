@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using BloodDonationProject.Models;
+using System.Text.RegularExpressions;
 
 namespace BloodDonationProject.Controllers.User
 {
@@ -133,9 +134,9 @@ namespace BloodDonationProject.Controllers.User
                 ViewBag.ErroMsg = "This not a Number";
                 return View();
             }
-            else if (!(user.Phone.Length == 11))
+            else if (!new Regex(@"^(?:\+?88)?01[13-9]\d{8}$").IsMatch(user.Phone))
             {
-                ViewBag.ErroMsg = "Phone has to be exact 11 Numbers";
+                ViewBag.ErroMsg = "Phone Number is not Valid";
                 return View();
             }
             if (user.Address == null)

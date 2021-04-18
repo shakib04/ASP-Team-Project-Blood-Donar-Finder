@@ -83,6 +83,8 @@
     <EntitySetMapping Name="Posts">
       <EntityTypeMapping TypeName="BlooodDonationDBModel.Post">
         <MappingFragment StoreEntitySet="Posts">
+          <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+          <ScalarProperty Name="HospitalName" ColumnName="HospitalName" />
           <ScalarProperty Name="PostID" ColumnName="PostID" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="Address" ColumnName="Address" />

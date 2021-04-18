@@ -78,8 +78,10 @@
     </Key>
     <Property Name="PostID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="UserId" Type="int" Nullable="false" />
-    <Property Name="Address" Type="varchar" MaxLength="500" Nullable="false" />
     <Property Name="WantedBlood" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="HospitalName" Type="varchar" MaxLength="500" />
+    <Property Name="Address" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="ContactNumber" Type="varchar" MaxLength="20" />
     <Property Name="Text" Type="varchar" MaxLength="500" />
     <Property Name="Time" Type="datetime" Nullable="false" />
   </EntityType>

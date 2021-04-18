@@ -12,5 +12,9 @@ namespace BloodDonationProject.Models.MetaData
         public string Password { get; set; }
         [Required]
         public string Email { get; set; }
+        [Display(Name ="Phone Number")]
+        public string Phone { get; set; }
+        [Display(Name ="Your Blood Group")]
+        public string BloodGroup { get; set; }
     }
 }

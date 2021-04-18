@@ -83,8 +83,10 @@
           </Key>
           <Property Name="PostID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserId" Type="int" Nullable="false" />
-          <Property Name="Address" Type="varchar" MaxLength="500" Nullable="false" />
           <Property Name="WantedBlood" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="HospitalName" Type="varchar" MaxLength="500" />
+          <Property Name="Address" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="ContactNumber" Type="varchar" MaxLength="20" />
           <Property Name="Text" Type="varchar" MaxLength="500" />
           <Property Name="Time" Type="datetime" Nullable="false" />
         </EntityType>
@@ -466,6 +468,8 @@
           <NavigationProperty Name="Posts1" Relationship="Self.FK_Posts_Posts" FromRole="Posts" ToRole="Posts1" />
           <NavigationProperty Name="Post1" Relationship="Self.FK_Posts_Posts" FromRole="Posts1" ToRole="Posts" />
           <NavigationProperty Name="userInfo" Relationship="Self.FK_Posts_userInfo" FromRole="Posts" ToRole="userInfo" />
+          <Property Name="HospitalName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="ContactNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="report">
           <Key>
@@ -857,6 +861,8 @@
           <EntitySetMapping Name="Posts">
             <EntityTypeMapping TypeName="BlooodDonationDBModel.Post">
               <MappingFragment StoreEntitySet="Posts">
+                <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+                <ScalarProperty Name="HospitalName" ColumnName="HospitalName" />
                 <ScalarProperty Name="PostID" ColumnName="PostID" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
