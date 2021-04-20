@@ -10,7 +10,6 @@
         <EntityTypeShape EntityType="BlooodDonationDBModel.contactU" Width="1.5" PointX="5.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="BlooodDonationDBModel.DisabledAccount" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="BlooodDonationDBModel.DonationForSystem" Width="1.5" PointX="5.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BlooodDonationDBModel.donorRating" Width="1.5" PointX="3" PointY="6.5" IsExpanded="true" />
         <EntityTypeShape EntityType="BlooodDonationDBModel.FlagPost" Width="1.5" PointX="5.25" PointY="12.25" IsExpanded="true" />
         <EntityTypeShape EntityType="BlooodDonationDBModel.Post" Width="1.5" PointX="3" PointY="12.75" IsExpanded="true" />
         <EntityTypeShape EntityType="BlooodDonationDBModel.report" Width="1.5" PointX="3" PointY="16.5" IsExpanded="true" />
@@ -18,7 +17,6 @@
         <EntityTypeShape EntityType="BlooodDonationDBModel.Salary" Width="1.5" PointX="3" PointY="22.25" IsExpanded="true" />
         <EntityTypeShape EntityType="BlooodDonationDBModel.userInfo" Width="1.5" PointX="0.75" PointY="9.625" IsExpanded="true" />
         <AssociationConnector Association="BlooodDonationDBModel.FK_BloodBook_userInfo" ManuallyRouted="false" />
-        <AssociationConnector Association="BlooodDonationDBModel.FK_donorRatings_userInfo" ManuallyRouted="false" />
         <AssociationConnector Association="BlooodDonationDBModel.FK_FlagPost_Posts" ManuallyRouted="false" />
         <AssociationConnector Association="BlooodDonationDBModel.FK_FlagPost_userInfo" ManuallyRouted="false" />
         <AssociationConnector Association="BlooodDonationDBModel.FK_Posts_Posts" ManuallyRouted="false" />
@@ -30,7 +28,11 @@
         <AssociationConnector Association="BlooodDonationDBModel.FK_Salary_userInfo" ManuallyRouted="false" />
         <AssociationConnector Association="BlooodDonationDBModel.FK_userInfo_Posts" ManuallyRouted="false" />
         <AssociationConnector Association="BlooodDonationDBModel.FK_userInfo_userInfo" ManuallyRouted="false" />
-      </Diagram>
+        <EntityTypeShape EntityType="BlooodDonationDBModel.DonationReply" Width="1.5" PointX="8.375" PointY="0.75" />
+        <AssociationConnector Association="BlooodDonationDBModel.FK_DonationReply_RequestBlood" />
+        <EntityTypeShape EntityType="BlooodDonationDBModel.donorRating" Width="1.5" PointX="8.625" PointY="3.75" />
+        <AssociationConnector Association="BlooodDonationDBModel.FK_donorRatings_userInfo" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

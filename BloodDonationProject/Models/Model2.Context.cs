@@ -30,12 +30,13 @@ namespace BloodDonationProject.Models
         public virtual DbSet<contactU> contactUs { get; set; }
         public virtual DbSet<DisabledAccount> DisabledAccounts { get; set; }
         public virtual DbSet<DonationForSystem> DonationForSystems { get; set; }
-        public virtual DbSet<donorRating> donorRatings { get; set; }
         public virtual DbSet<FlagPost> FlagPosts { get; set; }
         public virtual DbSet<Post> Posts { get; set; }
         public virtual DbSet<report> reports { get; set; }
         public virtual DbSet<RequestBlood> RequestBloods { get; set; }
         public virtual DbSet<Salary> Salaries { get; set; }
         public virtual DbSet<userInfo> userInfoes { get; set; }
+        public virtual DbSet<DonationReply> DonationReplies { get; set; }
+        public virtual DbSet<donorRating> donorRatings { get; set; }
     }
 }

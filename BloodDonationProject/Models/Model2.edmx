@@ -56,6 +56,14 @@
           <Property Name="UserEmail" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="YourMessage" Type="varchar" MaxLength="500" />
         </EntityType>
+        <EntityType Name="DonationReply">
+          <Key>
+            <PropertyRef Name="replyId" />
+          </Key>
+          <Property Name="replyId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RequestId" Type="int" Nullable="false" />
+          <Property Name="willDonate" Type="varchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="donorRatings">
           <Key>
             <PropertyRef Name="rateId" />
@@ -161,6 +169,18 @@
             </Principal>
             <Dependent Role="BloodBook">
               <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DonationReply_RequestBlood">
+          <End Role="RequestBlood" Type="Self.RequestBlood" Multiplicity="1" />
+          <End Role="DonationReply" Type="Self.DonationReply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RequestBlood">
+              <PropertyRef Name="RequestId" />
+            </Principal>
+            <Dependent Role="DonationReply">
+              <PropertyRef Name="RequestId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -314,6 +334,7 @@
           <EntitySet Name="contactUs" EntityType="Self.contactUs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DisabledAccount" EntityType="Self.DisabledAccount" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DonationForSystem" EntityType="Self.DonationForSystem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DonationReply" EntityType="Self.DonationReply" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="donorRatings" EntityType="Self.donorRatings" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FlagPost" EntityType="Self.FlagPost" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Posts" EntityType="Self.Posts" Schema="dbo" store:Type="Tables" />
@@ -324,6 +345,10 @@
           <AssociationSet Name="FK_BloodBook_userInfo" Association="Self.FK_BloodBook_userInfo">
             <End Role="userInfo" EntitySet="userInfo" />
             <End Role="BloodBook" EntitySet="BloodBook" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DonationReply_RequestBlood" Association="Self.FK_DonationReply_RequestBlood">
+            <End Role="RequestBlood" EntitySet="RequestBlood" />
+            <End Role="DonationReply" EntitySet="DonationReply" />
           </AssociationSet>
           <AssociationSet Name="FK_donorRatings_userInfo" Association="Self.FK_donorRatings_userInfo">
             <End Role="userInfo" EntitySet="userInfo" />
@@ -430,19 +455,6 @@
           <Property Name="UserEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="YourMessage" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityType Name="donorRating">
-          <Key>
-            <PropertyRef Name="rateId" />
-          </Key>
-          <Property Name="rateId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="userID" Type="Int32" Nullable="false" />
-          <Property Name="oneStar" Type="Int32" />
-          <Property Name="twoStar" Type="Int32" />
-          <Property Name="threeStar" Type="Int32" />
-          <Property Name="fourStar" Type="Int32" />
-          <Property Name="fiveStar" Type="Int32" />
-          <NavigationProperty Name="userInfo" Relationship="Self.FK_donorRatings_userInfo" FromRole="donorRatings" ToRole="userInfo" />
-        </EntityType>
         <EntityType Name="FlagPost">
           <Key>
             <PropertyRef Name="FlagId" />
@@ -492,6 +504,7 @@
           <Property Name="DonarId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="userInfo" Relationship="Self.FK_RequestBlood_userInfo" FromRole="RequestBlood" ToRole="userInfo" />
           <NavigationProperty Name="userInfo1" Relationship="Self.FK_RequestBlood_userInfo1" FromRole="RequestBlood" ToRole="userInfo" />
+          <NavigationProperty Name="DonationReplies" Relationship="BlooodDonationDBModel.FK_DonationReply_RequestBlood" FromRole="RequestBlood" ToRole="DonationReply" />
         </EntityType>
         <EntityType Name="Salary">
           <Key>
@@ -538,7 +551,6 @@
           <Property Name="NID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Social_Profile" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="BloodBooks" Relationship="Self.FK_BloodBook_userInfo" FromRole="userInfo" ToRole="BloodBook" />
-          <NavigationProperty Name="donorRatings" Relationship="Self.FK_donorRatings_userInfo" FromRole="userInfo" ToRole="donorRatings" />
           <NavigationProperty Name="FlagPosts" Relationship="Self.FK_FlagPost_userInfo" FromRole="userInfo" ToRole="FlagPost" />
           <NavigationProperty Name="Posts" Relationship="Self.FK_Posts_userInfo" FromRole="userInfo" ToRole="Posts" />
           <NavigationProperty Name="reports" Relationship="Self.FK_reports_DonorID" FromRole="userInfo" ToRole="reports" />
@@ -550,7 +562,8 @@
           <NavigationProperty Name="userInfo2" Relationship="Self.FK_userInfo_Posts" FromRole="userInfo1" ToRole="userInfo" />
           <NavigationProperty Name="userInfo11" Relationship="Self.FK_userInfo_userInfo" FromRole="userInfo" ToRole="userInfo1" />
           <NavigationProperty Name="userInfo3" Relationship="Self.FK_userInfo_userInfo" FromRole="userInfo1" ToRole="userInfo" />
-        </EntityType>
+          <NavigationProperty Name="donorRatings" Relationship="BlooodDonationDBModel.FK_donorRatings_userInfo" FromRole="userInfo" ToRole="donorRating" />
+          </EntityType>
         <Association Name="FK_BloodBook_userInfo">
           <End Role="userInfo" Type="Self.userInfo" Multiplicity="1" />
           <End Role="BloodBook" Type="Self.BloodBook" Multiplicity="*" />
@@ -560,18 +573,6 @@
             </Principal>
             <Dependent Role="BloodBook">
               <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_donorRatings_userInfo">
-          <End Role="userInfo" Type="Self.userInfo" Multiplicity="1" />
-          <End Role="donorRatings" Type="Self.donorRating" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="userInfo">
-              <PropertyRef Name="userID" />
-            </Principal>
-            <Dependent Role="donorRatings">
-              <PropertyRef Name="userID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -713,7 +714,6 @@
           <EntitySet Name="contactUs" EntityType="Self.contactU" />
           <EntitySet Name="DisabledAccounts" EntityType="Self.DisabledAccount" />
           <EntitySet Name="DonationForSystems" EntityType="Self.DonationForSystem" />
-          <EntitySet Name="donorRatings" EntityType="Self.donorRating" />
           <EntitySet Name="FlagPosts" EntityType="Self.FlagPost" />
           <EntitySet Name="Posts" EntityType="Self.Post" />
           <EntitySet Name="reports" EntityType="Self.report" />
@@ -723,10 +723,6 @@
           <AssociationSet Name="FK_BloodBook_userInfo" Association="Self.FK_BloodBook_userInfo">
             <End Role="userInfo" EntitySet="userInfoes" />
             <End Role="BloodBook" EntitySet="BloodBooks" />
-          </AssociationSet>
-          <AssociationSet Name="FK_donorRatings_userInfo" Association="Self.FK_donorRatings_userInfo">
-            <End Role="userInfo" EntitySet="userInfoes" />
-            <End Role="donorRatings" EntitySet="donorRatings" />
           </AssociationSet>
           <AssociationSet Name="FK_FlagPost_Posts" Association="Self.FK_FlagPost_Posts">
             <End Role="Posts" EntitySet="Posts" />
@@ -772,8 +768,64 @@
             <End Role="userInfo" EntitySet="userInfoes" />
             <End Role="userInfo1" EntitySet="userInfoes" />
           </AssociationSet>
-        </EntityContainer>
-      </Schema>
+          <EntitySet Name="DonationReplies" EntityType="BlooodDonationDBModel.DonationReply" />
+          <AssociationSet Name="FK_DonationReply_RequestBlood" Association="BlooodDonationDBModel.FK_DonationReply_RequestBlood">
+            <End Role="RequestBlood" EntitySet="RequestBloods" />
+            <End Role="DonationReply" EntitySet="DonationReplies" />
+          </AssociationSet>
+          <EntitySet Name="donorRatings" EntityType="BlooodDonationDBModel.donorRating" />
+          <AssociationSet Name="FK_donorRatings_userInfo" Association="BlooodDonationDBModel.FK_donorRatings_userInfo">
+            <End Role="userInfo" EntitySet="userInfoes" />
+            <End Role="donorRating" EntitySet="donorRatings" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="DonationReply">
+          <Key>
+            <PropertyRef Name="replyId" />
+          </Key>
+          <Property Name="replyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RequestId" Type="Int32" Nullable="false" />
+          <Property Name="willDonate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="RequestBlood" Relationship="BlooodDonationDBModel.FK_DonationReply_RequestBlood" FromRole="DonationReply" ToRole="RequestBlood" />
+        </EntityType>
+        <Association Name="FK_DonationReply_RequestBlood">
+          <End Type="BlooodDonationDBModel.RequestBlood" Role="RequestBlood" Multiplicity="1" />
+          <End Type="BlooodDonationDBModel.DonationReply" Role="DonationReply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RequestBlood">
+              <PropertyRef Name="RequestId" />
+            </Principal>
+            <Dependent Role="DonationReply">
+              <PropertyRef Name="RequestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="donorRating">
+          <Key>
+            <PropertyRef Name="rateId" />
+          </Key>
+          <Property Name="rateId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userID" Type="Int32" Nullable="false" />
+          <Property Name="oneStar" Type="Int32" />
+          <Property Name="twoStar" Type="Int32" />
+          <Property Name="threeStar" Type="Int32" />
+          <Property Name="fourStar" Type="Int32" />
+          <Property Name="fiveStar" Type="Int32" />
+          <NavigationProperty Name="userInfo" Relationship="BlooodDonationDBModel.FK_donorRatings_userInfo" FromRole="donorRating" ToRole="userInfo" />
+        </EntityType>
+        <Association Name="FK_donorRatings_userInfo">
+          <End Type="BlooodDonationDBModel.userInfo" Role="userInfo" Multiplicity="1" />
+          <End Type="BlooodDonationDBModel.donorRating" Role="donorRating" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="userInfo">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="donorRating">
+              <PropertyRef Name="userID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -832,19 +884,6 @@
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="UserEmail" ColumnName="UserEmail" />
                 <ScalarProperty Name="YourMessage" ColumnName="YourMessage" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="donorRatings">
-            <EntityTypeMapping TypeName="BlooodDonationDBModel.donorRating">
-              <MappingFragment StoreEntitySet="donorRatings">
-                <ScalarProperty Name="rateId" ColumnName="rateId" />
-                <ScalarProperty Name="userID" ColumnName="userID" />
-                <ScalarProperty Name="oneStar" ColumnName="oneStar" />
-                <ScalarProperty Name="twoStar" ColumnName="twoStar" />
-                <ScalarProperty Name="threeStar" ColumnName="threeStar" />
-                <ScalarProperty Name="fourStar" ColumnName="fourStar" />
-                <ScalarProperty Name="fiveStar" ColumnName="fiveStar" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -935,6 +974,28 @@
                 <ScalarProperty Name="Gender" ColumnName="Gender" />
                 <ScalarProperty Name="NID" ColumnName="NID" />
                 <ScalarProperty Name="Social_Profile" ColumnName="Social_Profile" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DonationReplies">
+            <EntityTypeMapping TypeName="BlooodDonationDBModel.DonationReply">
+              <MappingFragment StoreEntitySet="DonationReply">
+                <ScalarProperty Name="willDonate" ColumnName="willDonate" />
+                <ScalarProperty Name="RequestId" ColumnName="RequestId" />
+                <ScalarProperty Name="replyId" ColumnName="replyId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="donorRatings">
+            <EntityTypeMapping TypeName="BlooodDonationDBModel.donorRating">
+              <MappingFragment StoreEntitySet="donorRatings">
+                <ScalarProperty Name="fiveStar" ColumnName="fiveStar" />
+                <ScalarProperty Name="fourStar" ColumnName="fourStar" />
+                <ScalarProperty Name="threeStar" ColumnName="threeStar" />
+                <ScalarProperty Name="twoStar" ColumnName="twoStar" />
+                <ScalarProperty Name="oneStar" ColumnName="oneStar" />
+                <ScalarProperty Name="userID" ColumnName="userID" />
+                <ScalarProperty Name="rateId" ColumnName="rateId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -51,6 +51,14 @@
     <Property Name="UserEmail" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="YourMessage" Type="varchar" MaxLength="500" />
   </EntityType>
+  <EntityType Name="DonationReply">
+    <Key>
+      <PropertyRef Name="replyId" />
+    </Key>
+    <Property Name="replyId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RequestId" Type="int" Nullable="false" />
+    <Property Name="willDonate" Type="varchar" MaxLength="50" />
+  </EntityType>
   <EntityType Name="donorRatings">
     <Key>
       <PropertyRef Name="rateId" />
@@ -156,6 +164,18 @@
       </Principal>
       <Dependent Role="BloodBook">
         <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DonationReply_RequestBlood">
+    <End Role="RequestBlood" Type="Self.RequestBlood" Multiplicity="1" />
+    <End Role="DonationReply" Type="Self.DonationReply" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RequestBlood">
+        <PropertyRef Name="RequestId" />
+      </Principal>
+      <Dependent Role="DonationReply">
+        <PropertyRef Name="RequestId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -309,6 +329,7 @@
     <EntitySet Name="contactUs" EntityType="Self.contactUs" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DisabledAccount" EntityType="Self.DisabledAccount" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DonationForSystem" EntityType="Self.DonationForSystem" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DonationReply" EntityType="Self.DonationReply" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="donorRatings" EntityType="Self.donorRatings" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="FlagPost" EntityType="Self.FlagPost" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Posts" EntityType="Self.Posts" Schema="dbo" store:Type="Tables" />
@@ -319,6 +340,10 @@
     <AssociationSet Name="FK_BloodBook_userInfo" Association="Self.FK_BloodBook_userInfo">
       <End Role="userInfo" EntitySet="userInfo" />
       <End Role="BloodBook" EntitySet="BloodBook" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DonationReply_RequestBlood" Association="Self.FK_DonationReply_RequestBlood">
+      <End Role="RequestBlood" EntitySet="RequestBlood" />
+      <End Role="DonationReply" EntitySet="DonationReply" />
     </AssociationSet>
     <AssociationSet Name="FK_donorRatings_userInfo" Association="Self.FK_donorRatings_userInfo">
       <End Role="userInfo" EntitySet="userInfo" />

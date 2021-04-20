@@ -61,7 +61,7 @@
     </div>
     <p>
         @*@Html.ActionLink("Report", "ReportThisUser", new { id = Model.userID }) |*@
-        @if (Model.Type == "donar")
+        @if (Model.Type.ToLower() == "donor")
         {
             @Html.ActionLink("Request Blood", "RequestBlood", new { id = Model.userID })
         }

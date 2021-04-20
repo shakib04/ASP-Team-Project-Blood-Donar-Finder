@@ -57,19 +57,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="donorRatings">
-      <EntityTypeMapping TypeName="BlooodDonationDBModel.donorRating">
-        <MappingFragment StoreEntitySet="donorRatings">
-          <ScalarProperty Name="rateId" ColumnName="rateId" />
-          <ScalarProperty Name="userID" ColumnName="userID" />
-          <ScalarProperty Name="oneStar" ColumnName="oneStar" />
-          <ScalarProperty Name="twoStar" ColumnName="twoStar" />
-          <ScalarProperty Name="threeStar" ColumnName="threeStar" />
-          <ScalarProperty Name="fourStar" ColumnName="fourStar" />
-          <ScalarProperty Name="fiveStar" ColumnName="fiveStar" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="FlagPosts">
       <EntityTypeMapping TypeName="BlooodDonationDBModel.FlagPost">
         <MappingFragment StoreEntitySet="FlagPost">
@@ -157,6 +144,28 @@
           <ScalarProperty Name="Gender" ColumnName="Gender" />
           <ScalarProperty Name="NID" ColumnName="NID" />
           <ScalarProperty Name="Social_Profile" ColumnName="Social_Profile" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DonationReplies">
+      <EntityTypeMapping TypeName="BlooodDonationDBModel.DonationReply">
+        <MappingFragment StoreEntitySet="DonationReply">
+          <ScalarProperty Name="willDonate" ColumnName="willDonate" />
+          <ScalarProperty Name="RequestId" ColumnName="RequestId" />
+          <ScalarProperty Name="replyId" ColumnName="replyId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="donorRatings">
+      <EntityTypeMapping TypeName="BlooodDonationDBModel.donorRating">
+        <MappingFragment StoreEntitySet="donorRatings">
+          <ScalarProperty Name="fiveStar" ColumnName="fiveStar" />
+          <ScalarProperty Name="fourStar" ColumnName="fourStar" />
+          <ScalarProperty Name="threeStar" ColumnName="threeStar" />
+          <ScalarProperty Name="twoStar" ColumnName="twoStar" />
+          <ScalarProperty Name="oneStar" ColumnName="oneStar" />
+          <ScalarProperty Name="userID" ColumnName="userID" />
+          <ScalarProperty Name="rateId" ColumnName="rateId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

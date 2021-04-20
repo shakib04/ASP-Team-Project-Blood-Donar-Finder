@@ -84,8 +84,9 @@ namespace BloodDonationProject.Controllers
             if (DonorisValid && !BanCheck)
             {
                 FormsAuthentication.SetAuthCookie(Info.Email, false);
-                TempData["errorLogin"] = "solved";
-               // return RedirectToAction("Dashboard", "User");   //oi tonmoy eikhane .....................
+                Session["Type"] = "Donner";
+                TempData["errorLogin"] = "Donor";
+                return RedirectToAction("Index", "Donor");
             }
 
 

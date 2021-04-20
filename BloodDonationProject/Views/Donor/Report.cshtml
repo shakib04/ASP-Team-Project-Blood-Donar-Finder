@@ -1,0 +1,126 @@
+﻿@model BloodDonationProject.Models.donorRating
+
+@{
+    int oneStar = 0;
+    int twoStar = 0;
+    int threeStar = 0;
+    int fourStar = 0;
+    int fiveStar = 0;
+
+    Layout = null;
+    if(Model != null)
+    {
+
+        if (Model.oneStar == null) { oneStar = 0; }
+        if (Model.twoStar == null) { twoStar = 0; }
+        if (Model.threeStar == null) { threeStar = 0; }
+        if (Model.fourStar == null) { fourStar = 0; }
+        if (Model.fiveStar == null) { fiveStar = 0; }
+
+        oneStar = (int)Model.oneStar;
+        twoStar = (int)Model.twoStar;
+        threeStar = (int)Model.threeStar;
+        fourStar = (int)Model.fourStar;
+        fiveStar = (int)Model.fiveStar;
+    }
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <title>User Ratings</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .topnav {
+            overflow: hidden;
+            background-color: #333;
+        }
+
+            .topnav h1 {
+                float: left;
+                color: whitesmoke;
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+                font-size: 17px;
+            }
+
+                .topnav h1:hover {
+                    background-color: #ddd;
+                    color: black;
+                }
+
+                .topnav h1.active {
+                    background-color: #4CAF50;
+                    color: white;
+                }
+    </style>
+
+</head>
+<body>
+    <div class="topnav">
+        <h1>@Html.ActionLink("Home", "Index", "Donor")</h1>
+        <h1>@Html.ActionLink("Edit", "Edit", "Donor")</h1>
+        <h1>@Html.ActionLink("Post", "Post", "Donor")</h1>
+        <h1>@Html.ActionLink("BloodRequest", "BloodRequest", "Donor")</h1>
+        <h1>@Html.ActionLink("Users", "Users", "Donor")</h1>
+        <h1 class="active">@Html.ActionLink("Report", "Report", "Donor")</h1>
+        <h1>@Html.ActionLink("Report2", "Report2", "Donor")</h1>
+        <h1>@Html.ActionLink("Logout", "Logout", "Admin")</h1>
+    </div>
+    <div>
+        @{ 
+            if (Model == null)
+            {
+                <h1>No Ratings Available</h1>
+            }
+        }
+    </div>
+    <div id="chartContainer"></div>
+    <script type="text/javascript">
+        window.onload = function () {
+            var chart = new CanvasJS.Chart("chartContainer", {
+                title: {
+                    text: "User Ratings"
+                },
+                animationEnabled: true,
+                legend: {
+                    verticalAlign: "center",
+                    horizontalAlign: "left",
+                    fontSize: 20,
+                    fontFamily: "Helvetica"
+                },
+                theme: "light2",
+                data: [
+                    {
+                        type: "pie",
+                        indexLabelFontFamily: "Garamond",
+                        indexLabelFontSize: 20,
+                        indexLabel: "{label} {y}%",
+                        startAngle: -20,
+                        showInLegend: true,
+                        toolTipContent: "{legendText} {y}%",
+                        dataPoints: [
+                            { y: @oneStar, legendText: "OneStar", label: "OneStar" },
+                            { y: @twoStar, legendText: "TwoStar", label: "TwoStar" },
+                            { y: @threeStar, legendText: "ThreeStar", label: "ThreeStar" },
+                            { y: @fourStar, legendText: "FourStar", label: "FourStar" },
+                            { y: @fiveStar, legendText: "FIveStar", label: "FIveStar" }
+                        ]
+                    }
+                ]
+            });
+            chart.render();
+        };
+    </script>
+    </div>
+</body>
+</html>

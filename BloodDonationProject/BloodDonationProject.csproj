@@ -185,6 +185,7 @@
     <Compile Include="Controllers\BloodBookController.cs" />
     <Compile Include="Controllers\ChartController.cs" />
     <Compile Include="Controllers\DonationForSystemController.cs" />
+    <Compile Include="Controllers\DonorController.cs" />
     <Compile Include="Controllers\FlagPostController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PostController.cs" />
@@ -210,6 +211,9 @@
       <DependentUpon>Model2.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DonationForSystem2.cs" />
+    <Compile Include="Models\DonationReply.cs">
+      <DependentUpon>Model2.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\donorRating.cs">
       <DependentUpon>Model2.tt</DependentUpon>
     </Compile>
@@ -258,6 +262,7 @@
     <Compile Include="Repository\IRepository.cs" />
     <Compile Include="Repository\ProductRepository.cs" />
     <Compile Include="Repository\Repository.cs" />
+    <Compile Include="Repository\UserInfoRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config">
@@ -329,6 +334,19 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Donor\BloodRequest.cshtml" />
+    <Content Include="Views\Donor\ChangeDoc.cshtml" />
+    <Content Include="Views\Donor\ChangeProPic.cshtml" />
+    <Content Include="Views\Donor\Create.cshtml" />
+    <Content Include="Views\Donor\Edit.cshtml" />
+    <Content Include="Views\Donor\FlagThisPost.cshtml" />
+    <Content Include="Views\Donor\Index.cshtml" />
+    <Content Include="Views\Donor\Post.cshtml" />
+    <Content Include="Views\Donor\PostDetails.cshtml" />
+    <Content Include="Views\Donor\Report.cshtml" />
+    <Content Include="Views\Donor\Report2.cshtml" />
+    <Content Include="Views\Donor\UserPost.cshtml" />
+    <Content Include="Views\Donor\Users.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

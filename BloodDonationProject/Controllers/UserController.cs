@@ -48,14 +48,14 @@ namespace BloodDonationProject.Controllers
         [HttpGet]
         public ActionResult Donarslist()
         {
-            var donarlist = context.userInfoes.Where(x => x.Type.ToLower() == "donar").ToList();
+            var donarlist = context.userInfoes.Where(x => x.Type.ToLower() == "donor").ToList();
             return View(donarlist);
         }
 
         [HttpPost]
         public ActionResult Donarslist(string SearchDonar)
         {
-            var donarlist = context.userInfoes.Where(x => x.Type == "donar").ToList();
+            var donarlist = context.userInfoes.Where(x => x.Type.ToLower() == "donor").ToList();
             donarlist = donarlist.Where(x => x.BloodGroup == SearchDonar).ToList();
             //TempData["search_donar"] = donarlist;
             return View(donarlist); ;
@@ -161,9 +161,26 @@ namespace BloodDonationProject.Controllers
         [HttpPost]
         public ActionResult ChangeProPic(HttpPostedFileBase file)
         {
+            
+
             if (file == null)
             {
                 ViewBag.ErrMsg = "Please Select a Valid Image";
+                return View();
+            }
+
+            var supportedTypes = new[] { "jpg", "jpeg", "png" };
+            var fileExt = System.IO.Path.GetExtension(file.FileName).Substring(1);
+
+            if (file.ContentLength > (2 * 1024 * 1024))
+            {
+                ViewBag.Message = "File size Should Be UpTo " + 2 + " MB";
+                return View();
+            }
+
+            if (!supportedTypes.Contains(fileExt))
+            {
+                ViewBag.Message = "File Extension Is Invalid - Only Upload JPG/JPEG/PNG File";
                 return View();
             }
 
@@ -192,7 +209,9 @@ namespace BloodDonationProject.Controllers
                 return View();
             }
 
-            ViewBag.Message = "File Uploaded Successfully!!";
+            
+
+            ViewBag.Message = "File is Uploaded Successfully!!";
             return RedirectToAction("MyProfile");
 
         }

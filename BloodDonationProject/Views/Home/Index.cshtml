@@ -20,8 +20,25 @@
         <span style="margin: 10px 10px"> @Html.ActionLink("SignUp", "")</span>
     </nav>*@
     <div>
-        <h2>Welocome to Blood Donate Service Site</h2>
+        <h2>Welcome to Blood Donate Service Site</h2>
         <br />
+    </div>
+
+    <h3>This Website is All About Find a Perfect Blood Donor</h3>
+    <div class="card mb-3">
+        
+        <div class="card-body border border-light m-1">
+            <h4 class="card-title popover-content text-primary bg-info">Blood Donor</h4>
+            <p class="card-text">If you want to <strong>Donate Blood</strong> to Save a Life </p>
+            <p class="card-text">Join with Us By <small class="text-muted"> @Html.ActionLink("Sign Up", "Create", "Donor", null, new { @class = "btn" }) </small> Here</p>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body border border-light">
+            <h4 class="card-title popover-content text-primary bg-warning">Donor Finder</h4>
+            <p class="card-text">Find a blood donor for your patient</p>
+            <p class="card-text">To Access All Feature <small class="text-muted">@Html.ActionLink("Sign Up", "UserRegistration", "UserInfo", null, new { @class = "btn" })</small></p>
+        </div>
     </div>
 
 </body>

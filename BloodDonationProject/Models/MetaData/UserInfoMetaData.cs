@@ -16,5 +16,7 @@ namespace BloodDonationProject.Models.MetaData
         public string Phone { get; set; }
         [Display(Name ="Your Blood Group")]
         public string BloodGroup { get; set; }
+        [Display(Name ="Last Donate")]
+        public Nullable<System.DateTime> LastDonate { get; set; }
     }
 }

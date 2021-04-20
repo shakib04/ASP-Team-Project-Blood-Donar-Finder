@@ -18,7 +18,6 @@ namespace BloodDonationProject.Models
         public userInfo()
         {
             this.BloodBooks = new HashSet<BloodBook>();
-            this.donorRatings = new HashSet<donorRating>();
             this.FlagPosts = new HashSet<FlagPost>();
             this.Posts = new HashSet<Post>();
             this.reports = new HashSet<report>();
@@ -26,6 +25,7 @@ namespace BloodDonationProject.Models
             this.RequestBloods = new HashSet<RequestBlood>();
             this.RequestBloods1 = new HashSet<RequestBlood>();
             this.Salaries = new HashSet<Salary>();
+            this.donorRatings = new HashSet<donorRating>();
         }
     
         public int userID { get; set; }
@@ -52,8 +52,6 @@ namespace BloodDonationProject.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BloodBook> BloodBooks { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<donorRating> donorRatings { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FlagPost> FlagPosts { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Post> Posts { get; set; }
@@ -71,5 +69,7 @@ namespace BloodDonationProject.Models
         public virtual userInfo userInfo2 { get; set; }
         public virtual userInfo userInfo11 { get; set; }
         public virtual userInfo userInfo3 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<donorRating> donorRatings { get; set; }
     }
 }

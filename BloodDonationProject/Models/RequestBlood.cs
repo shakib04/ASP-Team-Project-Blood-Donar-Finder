@@ -14,6 +14,12 @@ namespace BloodDonationProject.Models
     
     public partial class RequestBlood
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public RequestBlood()
+        {
+            this.DonationReplies = new HashSet<DonationReply>();
+        }
+    
         public int RequestId { get; set; }
         public string Request_Message { get; set; }
         public int UserId { get; set; }
@@ -21,5 +27,7 @@ namespace BloodDonationProject.Models
     
         public virtual userInfo userInfo { get; set; }
         public virtual userInfo userInfo1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DonationReply> DonationReplies { get; set; }
     }
 }
